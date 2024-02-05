@@ -1,6 +1,6 @@
 use bevy::prelude::{Component, Style, UiRect, Val};
 
-use crate::{compute_spring::ComputeSpring, spring_it::SpringIt};
+use crate::{compute_spring::ComputeSpring, spring::Spring, spring_it::SpringIt};
 
 impl ComputeSpring for UiRect {
     fn add(&self, other: &Self) -> Self {
@@ -94,6 +94,12 @@ impl ComputeSpring for Val {
 
 #[derive(Component, Default)]
 pub struct StylePositionSpring;
+
+impl StylePositionSpring {
+    pub fn new(equillibrium: UiRect, frequency: f32, damping: f32) -> Spring<Style, Self> {
+        Spring::new(equillibrium, frequency, damping)
+    }
+}
 
 impl SpringIt<Style> for StylePositionSpring {
     type T = UiRect;
