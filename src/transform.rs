@@ -1,9 +1,15 @@
 use bevy::prelude::*;
 
-use crate::spring_it::SpringIt;
+use crate::{spring::Spring, spring_it::SpringIt};
 
 #[derive(Component, Default)]
 pub struct TransformScaleSpring;
+
+impl TransformScaleSpring {
+    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Transform, Self> {
+        Spring::new(equillibrium, frequency, damping)
+    }
+}
 
 impl SpringIt<Transform> for TransformScaleSpring {
     type T = Vec3;
@@ -19,6 +25,12 @@ impl SpringIt<Transform> for TransformScaleSpring {
 
 #[derive(Component, Default)]
 pub struct TransformTranslationSpring;
+
+impl TransformTranslationSpring {
+    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Transform, Self> {
+        Spring::new(equillibrium, frequency, damping)
+    }
+}
 
 impl SpringIt<Transform> for TransformTranslationSpring {
     type T = Vec3;
