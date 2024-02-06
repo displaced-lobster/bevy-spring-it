@@ -9,7 +9,11 @@ fn main() {
         .run();
 }
 
-fn setup(mut commands: Commands, mut meshes: ResMut<Assets<Mesh>>) {
+fn setup(
+    mut commands: Commands,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+    mut meshes: ResMut<Assets<Mesh>>,
+) {
     commands.spawn(Camera3dBundle {
         transform: Transform::from_xyz(0.0, 0.0, 10.0),
         ..default()
@@ -17,6 +21,7 @@ fn setup(mut commands: Commands, mut meshes: ResMut<Assets<Mesh>>) {
 
     commands.spawn((
         PbrBundle {
+            material: materials.add(Color::RED.into()),
             mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
             ..default()
         },
