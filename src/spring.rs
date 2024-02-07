@@ -3,7 +3,7 @@ use bevy::prelude::Component;
 use crate::spring_it::SpringIt;
 
 #[derive(Component, Default)]
-pub struct Spring<C: Component, S: SpringIt<C>> {
+pub struct Spring<S: SpringIt> {
     pub equilibrium: S::T,
     pub frequency: f32,
     pub damping: f32,
@@ -15,7 +15,7 @@ pub struct Spring<C: Component, S: SpringIt<C>> {
     pub(crate) velocity_velocity_coef: f32,
 }
 
-impl<C: Component, S: SpringIt<C>> Spring<C, S> {
+impl<S: SpringIt> Spring<S> {
     pub fn new(equilibrium: S::T, frequency: f32, damping: f32) -> Self {
         Self {
             equilibrium,
@@ -102,11 +102,11 @@ impl<C: Component, S: SpringIt<C>> Spring<C, S> {
         }
     }
 
-    pub fn position(&self, component: &C) -> S::T {
+    pub fn position(&self, component: &S::C) -> S::T {
         self.spring_it.position(component)
     }
 
-    pub fn update(&mut self, component: &mut C, position: S::T) {
+    pub fn update(&mut self, component: &mut S::C, position: S::T) {
         self.spring_it.update(component, position);
     }
 }

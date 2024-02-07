@@ -39,7 +39,7 @@ fn setup(mut commands: Commands) {
 fn chase_cursor(
     q_window: Query<&Window>,
     q_camera: Query<(&Camera, &GlobalTransform)>,
-    mut q_spring: Query<&mut Spring<Transform, TransformTranslationSpring>, With<ChaseCamera>>,
+    mut q_spring: Query<&mut Spring<TransformTranslationSpring>, With<ChaseCamera>>,
 ) {
     let (camera, camera_transform) = q_camera.single();
     let window = q_window.single();

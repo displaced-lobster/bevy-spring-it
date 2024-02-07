@@ -96,12 +96,13 @@ impl ComputeSpring for Val {
 pub struct StylePositionSpring;
 
 impl StylePositionSpring {
-    pub fn new(equillibrium: UiRect, frequency: f32, damping: f32) -> Spring<Style, Self> {
+    pub fn new(equillibrium: UiRect, frequency: f32, damping: f32) -> Spring<Self> {
         Spring::new(equillibrium, frequency, damping)
     }
 }
 
-impl SpringIt<Style> for StylePositionSpring {
+impl SpringIt for StylePositionSpring {
+    type C = Style;
     type T = UiRect;
 
     fn position(&self, style: &Style) -> Self::T {

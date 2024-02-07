@@ -6,12 +6,13 @@ use crate::{spring::Spring, spring_it::SpringIt};
 pub struct TransformScaleSpring;
 
 impl TransformScaleSpring {
-    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Transform, Self> {
+    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Self> {
         Spring::new(equillibrium, frequency, damping)
     }
 }
 
-impl SpringIt<Transform> for TransformScaleSpring {
+impl SpringIt for TransformScaleSpring {
+    type C = Transform;
     type T = Vec3;
 
     fn position(&self, transform: &Transform) -> Self::T {
@@ -27,12 +28,13 @@ impl SpringIt<Transform> for TransformScaleSpring {
 pub struct TransformTranslationSpring;
 
 impl TransformTranslationSpring {
-    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Transform, Self> {
+    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Self> {
         Spring::new(equillibrium, frequency, damping)
     }
 }
 
-impl SpringIt<Transform> for TransformTranslationSpring {
+impl SpringIt for TransformTranslationSpring {
+    type C = Transform;
     type T = Vec3;
 
     fn position(&self, transform: &Transform) -> Self::T {

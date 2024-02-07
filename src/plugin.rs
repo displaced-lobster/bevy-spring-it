@@ -4,18 +4,15 @@ use std::marker::PhantomData;
 use crate::{compute_spring::ComputeSpring, spring::Spring, spring_it::SpringIt};
 
 #[derive(Default)]
-pub struct SpringItPlugin<C: Component, S: SpringIt<C>>(PhantomData<(C, S)>);
+pub struct SpringItPlugin<S: SpringIt>(PhantomData<S>);
 
-impl<C: Component, S: SpringIt<C>> Plugin for SpringItPlugin<C, S> {
+impl<S: SpringIt> Plugin for SpringItPlugin<S> {
     fn build(&self, app: &mut App) {
-        app.add_systems(Update, update_springs::<C, S>);
+        app.add_systems(Update, update_springs::<S>);
     }
 }
 
-fn update_springs<C: Component, S: SpringIt<C>>(
-    time: Res<Time>,
-    mut q_spring: Query<(&mut C, &mut Spring<C, S>)>,
-) {
+fn update_springs<S: SpringIt>(time: Res<Time>, mut q_spring: Query<(&mut S::C, &mut Spring<S>)>) {
     let delta = time.delta_seconds();
 
     for (mut component, mut spring) in &mut q_spring {
