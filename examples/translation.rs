@@ -21,8 +21,10 @@ fn setup(
 
     commands.spawn((
         PbrBundle {
-            material: materials.add(Color::RED.into()),
-            mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+            material: materials.add(Color::RED),
+            mesh: meshes.add(Cuboid {
+                half_size: Vec3::splat(1.0),
+            }),
             transform: Transform::from_xyz(5.0, 0.0, 0.0),
             ..default()
         },
