@@ -2,11 +2,7 @@ use bevy::prelude::{Vec2, Vec3};
 use std::ops::{Add, Mul, Sub};
 
 // Hack: since the compiler won't allow a generic implementation since upstream may break it in the future...
-pub trait ComputeSpringReady {
-    fn _compute_spring_ready() -> bool {
-        true
-    }
-}
+pub trait ComputeSpringReady {}
 
 impl ComputeSpringReady for f32 {}
 impl ComputeSpringReady for Vec2 {}
