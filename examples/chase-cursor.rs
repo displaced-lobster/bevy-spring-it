@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{color::palettes::css::RED, prelude::*};
 use bevy_spring_it::{Spring, SpringItTransformPlugins, TransformTranslationSpring};
 
 fn main() {
@@ -22,7 +22,7 @@ fn setup(mut commands: Commands) {
     commands.spawn((
         SpriteBundle {
             sprite: Sprite {
-                color: Color::RED,
+                color: RED.into(),
                 rect: Some(Rect {
                     min: Vec2::new(-50.0, -50.0),
                     max: Vec2::new(50.0, 50.0),

@@ -21,7 +21,7 @@ fn setup(
 
     commands.spawn((
         PbrBundle {
-            material: materials.add(Color::RED),
+            material: materials.add(Color::srgb(1.0, 0.0, 0.0)),
             mesh: meshes.add(Cuboid {
                 half_size: Vec3::splat(1.0),
             }),

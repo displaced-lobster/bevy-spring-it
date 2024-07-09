@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{color::palettes::css::RED, prelude::*};
 use bevy_spring_it::{SpringItUiPlugins, StylePositionSpring};
 
 fn main() {
@@ -22,7 +22,7 @@ fn setup(mut commands: Commands) {
                 height: Val::Px(100.0),
                 ..default()
             },
-            background_color: Color::RED.into(),
+            background_color: RED.into(),
             ..default()
         },
         StylePositionSpring::new(
