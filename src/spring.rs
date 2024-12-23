@@ -2,7 +2,7 @@ use bevy::prelude::Component;
 
 use crate::spring_it::SpringIt;
 
-#[derive(Component, Default)]
+#[derive(Clone, Component, Default)]
 pub struct Spring<S: SpringIt> {
     pub equilibrium: S::T,
     pub frequency: f32,
@@ -108,5 +108,20 @@ impl<S: SpringIt> Spring<S> {
 
     pub fn update(&mut self, component: &mut S::C, position: S::T) {
         self.spring_it.update(component, position);
+    }
+
+    pub fn with_damping(self, damping: f32) -> Self {
+        Self { damping, ..self }
+    }
+
+    pub fn with_equilibrium(self, equilibrium: S::T) -> Self {
+        Self {
+            equilibrium,
+            ..self
+        }
+    }
+
+    pub fn with_frequency(self, frequency: f32) -> Self {
+        Self { frequency, ..self }
     }
 }
