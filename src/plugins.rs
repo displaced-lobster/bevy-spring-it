@@ -3,7 +3,7 @@ use bevy::{app::PluginGroupBuilder, prelude::PluginGroup};
 use crate::{
     plugin::SpringItPlugin,
     transform::{TransformScaleSpring, TransformTranslationSpring},
-    ui::StylePositionSpring,
+    ui::NodePositionSpring,
 };
 
 pub struct SpringItTransformPlugins;
@@ -20,6 +20,6 @@ pub struct SpringItUiPlugins;
 
 impl PluginGroup for SpringItUiPlugins {
     fn build(self) -> PluginGroupBuilder {
-        PluginGroupBuilder::start::<Self>().add(SpringItPlugin::<StylePositionSpring>::default())
+        PluginGroupBuilder::start::<Self>().add(SpringItPlugin::<NodePositionSpring>::default())
     }
 }

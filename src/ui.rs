@@ -1,4 +1,4 @@
-use bevy::prelude::{Component, Style, UiRect, Val};
+use bevy::prelude::{Component, Node, UiRect, Val};
 
 use crate::{compute_spring::ComputeSpring, spring::Spring, spring_it::SpringIt};
 
@@ -93,31 +93,31 @@ impl ComputeSpring for Val {
 }
 
 #[derive(Component, Default)]
-pub struct StylePositionSpring;
+pub struct NodePositionSpring;
 
-impl StylePositionSpring {
+impl NodePositionSpring {
     pub fn new(equillibrium: UiRect, frequency: f32, damping: f32) -> Spring<Self> {
         Spring::new(equillibrium, frequency, damping)
     }
 }
 
-impl SpringIt for StylePositionSpring {
-    type C = Style;
+impl SpringIt for NodePositionSpring {
+    type C = Node;
     type T = UiRect;
 
-    fn position(&self, style: &Style) -> Self::T {
+    fn position(&self, node: &Node) -> Self::T {
         UiRect {
-            left: style.left,
-            right: style.right,
-            top: style.top,
-            bottom: style.bottom,
+            left: node.left,
+            right: node.right,
+            top: node.top,
+            bottom: node.bottom,
         }
     }
 
-    fn update(&self, style: &mut Style, position: Self::T) {
-        style.left = position.left;
-        style.right = position.right;
-        style.top = position.top;
-        style.bottom = position.bottom;
+    fn update(&self, node: &mut Node, position: Self::T) {
+        node.left = position.left;
+        node.right = position.right;
+        node.top = position.top;
+        node.bottom = position.bottom;
     }
 }

@@ -12,4 +12,4 @@ pub use plugins::{SpringItTransformPlugins, SpringItUiPlugins};
 pub use spring::Spring;
 pub use spring_it::SpringIt;
 pub use transform::{TransformScaleSpring, TransformTranslationSpring};
-pub use ui::StylePositionSpring;
+pub use ui::NodePositionSpring;

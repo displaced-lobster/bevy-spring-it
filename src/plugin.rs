@@ -13,7 +13,7 @@ impl<S: SpringIt> Plugin for SpringItPlugin<S> {
 }
 
 fn update_springs<S: SpringIt>(time: Res<Time>, mut q_spring: Query<(&mut S::C, &mut Spring<S>)>) {
-    let delta = time.delta_seconds();
+    let delta = time.delta_secs();
 
     for (mut component, mut spring) in &mut q_spring {
         spring.calc_motion_params(delta);
