@@ -15,11 +15,11 @@ impl SpringIt for TransformScaleSpring {
     type C = Transform;
     type T = Vec3;
 
-    fn position(&self, transform: &Transform) -> Self::T {
+    fn position(transform: &Transform) -> Self::T {
         transform.scale
     }
 
-    fn update(&self, transform: &mut Transform, position: Self::T) {
+    fn update(transform: &mut Transform, position: Self::T) {
         transform.scale = position;
     }
 }
@@ -37,11 +37,11 @@ impl SpringIt for TransformTranslationSpring {
     type C = Transform;
     type T = Vec3;
 
-    fn position(&self, transform: &Transform) -> Self::T {
+    fn position(transform: &Transform) -> Self::T {
         transform.translation
     }
 
-    fn update(&self, transform: &mut Transform, position: Self::T) {
+    fn update(transform: &mut Transform, position: Self::T) {
         transform.translation = position;
     }
 }

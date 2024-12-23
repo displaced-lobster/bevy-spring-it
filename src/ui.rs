@@ -105,7 +105,7 @@ impl SpringIt for NodePositionSpring {
     type C = Node;
     type T = UiRect;
 
-    fn position(&self, node: &Node) -> Self::T {
+    fn position(node: &Node) -> Self::T {
         UiRect {
             left: node.left,
             right: node.right,
@@ -114,7 +114,7 @@ impl SpringIt for NodePositionSpring {
         }
     }
 
-    fn update(&self, node: &mut Node, position: Self::T) {
+    fn update(node: &mut Node, position: Self::T) {
         node.left = position.left;
         node.right = position.right;
         node.top = position.top;

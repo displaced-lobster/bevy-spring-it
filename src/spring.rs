@@ -7,7 +7,6 @@ pub struct Spring<S: SpringIt> {
     pub equilibrium: S::T,
     pub frequency: f32,
     pub damping: f32,
-    pub(crate) spring_it: S,
     pub(crate) velocity: S::T,
     pub(crate) position_position_coef: f32,
     pub(crate) position_velocity_coef: f32,
@@ -21,7 +20,6 @@ impl<S: SpringIt> Spring<S> {
             equilibrium,
             frequency,
             damping,
-            spring_it: S::default(),
             velocity: S::T::default(),
             position_position_coef: 0.0,
             position_velocity_coef: 0.0,
@@ -103,11 +101,11 @@ impl<S: SpringIt> Spring<S> {
     }
 
     pub fn position(&self, component: &S::C) -> S::T {
-        self.spring_it.position(component)
+        S::position(component)
     }
 
     pub fn update(&mut self, component: &mut S::C, position: S::T) {
-        self.spring_it.update(component, position);
+        S::update(component, position);
     }
 
     pub fn with_damping(self, damping: f32) -> Self {
