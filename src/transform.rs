@@ -6,8 +6,8 @@ use crate::{spring::Spring, spring_it::SpringIt};
 pub struct TransformScaleSpring;
 
 impl TransformScaleSpring {
-    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Self> {
-        Spring::new(equillibrium, frequency, damping)
+    pub fn new(equilibrium: Vec3, frequency: f32, damping: f32) -> Spring<Self> {
+        Spring::new(equilibrium, frequency, damping)
     }
 }
 
@@ -28,8 +28,8 @@ impl SpringIt for TransformScaleSpring {
 pub struct TransformTranslationSpring;
 
 impl TransformTranslationSpring {
-    pub fn new(equillibrium: Vec3, frequency: f32, damping: f32) -> Spring<Self> {
-        Spring::new(equillibrium, frequency, damping)
+    pub fn new(equilibrium: Vec3, frequency: f32, damping: f32) -> Spring<Self> {
+        Spring::new(equilibrium, frequency, damping)
     }
 }
 
