@@ -2,7 +2,7 @@ use bevy::prelude::*;
 
 use crate::{anchor::SpringAnchor, spring::Spring, spring_it::SpringIt};
 
-#[derive(Component, Default, Reflect)]
+#[derive(Default, Reflect)]
 pub struct TransformScaleSpring;
 
 impl TransformScaleSpring {
@@ -24,7 +24,7 @@ impl SpringIt for TransformScaleSpring {
     }
 }
 
-#[derive(Component, Default, Reflect)]
+#[derive(Default, Reflect)]
 pub struct TransformTranslationSpring;
 
 impl TransformTranslationSpring {
