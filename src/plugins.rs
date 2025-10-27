@@ -1,25 +1,29 @@
-use bevy::{app::PluginGroupBuilder, prelude::PluginGroup};
+use bevy::prelude::{App, Plugin};
 
 use crate::{
     plugin::SpringItPlugin,
+    spring::Spring,
     transform::{TransformScaleSpring, TransformTranslationSpring},
     ui::NodePositionSpring,
 };
 
 pub struct SpringItTransformPlugins;
 
-impl PluginGroup for SpringItTransformPlugins {
-    fn build(self) -> PluginGroupBuilder {
-        PluginGroupBuilder::start::<Self>()
-            .add(SpringItPlugin::<TransformScaleSpring>::default())
-            .add(SpringItPlugin::<TransformTranslationSpring>::default())
+impl Plugin for SpringItTransformPlugins {
+    fn build(&self, app: &mut App) {
+        app.add_plugins((
+            SpringItPlugin::<TransformScaleSpring>::default(),
+            SpringItPlugin::<TransformTranslationSpring>::default(),
+        ))
+        .register_type::<Spring<TransformScaleSpring>>()
+        .register_type::<Spring<TransformTranslationSpring>>();
     }
 }
 
 pub struct SpringItUiPlugins;
 
-impl PluginGroup for SpringItUiPlugins {
-    fn build(self) -> PluginGroupBuilder {
-        PluginGroupBuilder::start::<Self>().add(SpringItPlugin::<NodePositionSpring>::default())
+impl Plugin for SpringItUiPlugins {
+    fn build(&self, app: &mut App) {
+        app.add_plugins(SpringItPlugin::<NodePositionSpring>::default());
     }
 }

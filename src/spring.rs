@@ -1,8 +1,9 @@
-use bevy::prelude::Component;
+use bevy::prelude::{Component, Reflect, ReflectComponent};
 
 use crate::spring_it::SpringIt;
 
-#[derive(Clone, Component, Default)]
+#[derive(Clone, Component, Default, Reflect)]
+#[reflect(Component)]
 pub struct Spring<S: SpringIt> {
     pub equilibrium: S::T,
     pub frequency: f32,
