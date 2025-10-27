@@ -35,8 +35,8 @@ fn chase_cursor(
     q_camera: Query<(&Camera, &GlobalTransform)>,
     mut q_spring: Query<&mut Spring<TransformTranslationSpring>, With<ChaseCamera>>,
 ) {
-    let (camera, camera_transform) = q_camera.single();
-    let window = q_window.single();
+    let (camera, camera_transform) = q_camera.single().unwrap();
+    let window = q_window.single().unwrap();
 
     if let Some([x, y, _]) = window
         .cursor_position()

@@ -1,9 +1,9 @@
-use bevy::prelude::Component;
+use bevy::ecs::component::{Component, Mutable};
 
 use crate::compute_spring::ComputeSpring;
 
 pub trait SpringIt: Component {
-    type C: Component;
+    type C: Component<Mutability = Mutable>;
     type T: ComputeSpring + Copy + Default + Send + Sync + 'static;
 
     fn position(component: &Self::C) -> Self::T;
