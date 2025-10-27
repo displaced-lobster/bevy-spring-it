@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{spring::Spring, spring_it::SpringIt};
+use crate::{anchor::SpringAnchor, spring::Spring, spring_it::SpringIt};
 
 #[derive(Component, Default)]
 pub struct TransformScaleSpring;
@@ -45,3 +45,6 @@ impl SpringIt for TransformTranslationSpring {
         transform.translation = position;
     }
 }
+
+pub type TransformScaleSpringAnchor = SpringAnchor<TransformScaleSpring>;
+pub type TransformTranslationSpringAnchor = SpringAnchor<TransformTranslationSpring>;

@@ -1,14 +1,30 @@
 use bevy::prelude::*;
 use std::marker::PhantomData;
 
-use crate::{compute_spring::ComputeSpring, spring::Spring, spring_it::SpringIt};
+use crate::{
+    anchor::SpringAnchor, compute_spring::ComputeSpring, spring::Spring, spring_it::SpringIt,
+};
 
 #[derive(Default)]
 pub struct SpringItPlugin<S: SpringIt>(PhantomData<S>);
 
 impl<S: SpringIt> Plugin for SpringItPlugin<S> {
     fn build(&self, app: &mut App) {
-        app.add_systems(Update, update_springs::<S>);
+        app.add_systems(
+            Update,
+            (update_anchored_equilibrium::<S>, update_springs::<S>),
+        );
+    }
+}
+
+fn update_anchored_equilibrium<S: SpringIt>(
+    anchors: Query<(&S::C, &SpringAnchor<S>), Changed<S::C>>,
+    mut springs: Query<&mut Spring<S>>,
+) {
+    for (component, anchor) in &anchors {
+        if let Ok(mut spring) = springs.get_mut(anchor.entity()) {
+            spring.equilibrium = spring.position(component);
+        }
     }
 }
 
